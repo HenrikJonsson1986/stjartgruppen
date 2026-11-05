@@ -3,7 +3,7 @@
 local ADDON_NAME, ns = ...
 
 local PREFIX = "STJARTGRUPPEN" -- addon message prefix, 16 chars max
-local defaults = { greet = true, muteSounds = false }
+local defaults = { greet = true, muteSounds = false, motd = true, song = true }
 local SEND_COOLDOWN = 60      -- seconds between version broadcasts per channel
 local SOUND_SEND_COOLDOWN = 3 -- seconds between sounds you can send
 local SOUND_RECV_COOLDOWN = 10 -- seconds between sounds accepted from the same friend
@@ -17,6 +17,7 @@ local lastSoundFrom = {}
 local function say(msg)
     print("|cffffcc33Stjartgruppen|r: " .. tostring(msg))
 end
+ns.say = say
 
 local function randomQuip()
     local quips = ns.quips
@@ -137,9 +138,14 @@ frame:SetScript("OnEvent", function(_, event, arg1, arg2, arg3, arg4)
             local q = randomQuip()
             if q then say(q) end
         end
+        if StjartgruppenDB.motd and ns.ShowMOTD then
+            C_Timer.After(2, ns.ShowMOTD) -- let the rest of the UI settle first
+        end
         C_Timer.After(5, broadcastAll)
+        ns.UpdateProximity()
     elseif event == "GROUP_ROSTER_UPDATE" then
         if IsInGroup() then broadcast("PARTY") end
+        ns.UpdateProximity()
     elseif event == "CHAT_MSG_ADDON" then
         -- payload: prefix, text, channel, sender
         if arg1 ~= PREFIX then return end
@@ -164,6 +170,10 @@ end)
 ----------------------------------------------------------------------
 local function help()
     say("commands:")
+    print("  /sg motd - show the message of the day window")
+    print("  /sg motd off | on - stop (or start) showing it at login")
+    print("  /sg song - play the reunion song (it plays by itself when a group member walks up to you)")
+    print("  /sg song stop - stop it, /sg song off | on - turn the automatic song off or on")
     print("  /sg quip - show a random quip")
     print("  /sg sounds - list available sounds")
     print("  /sg sound <name> - play a sound just for you")
@@ -177,7 +187,24 @@ SLASH_STJARTGRUPPEN1 = "/sg"
 SLASH_STJARTGRUPPEN2 = "/stjartgruppen"
 SlashCmdList["STJARTGRUPPEN"] = function(msg)
     local cmd, arg = tostring(msg or ""):lower():match("^%s*(%S*)%s*(.-)%s*$")
-    if cmd == "quip" then
+    if cmd == "motd" then
+        if arg == "off" or arg == "on" then
+            StjartgruppenDB.motd = (arg == "on")
+            say("message of the day at login: " .. arg)
+        else
+            ns.ShowMOTD()
+        end
+    elseif cmd == "song" then
+        if arg == "stop" then
+            ns.StopSong()
+        elseif arg == "off" or arg == "on" then
+            StjartgruppenDB.song = (arg == "on")
+            ns.UpdateProximity()
+            say("reunion song when a friend comes close: " .. arg)
+        elseif not ns.PlaySong() then
+            say("no song found. Put song.ogg in Stjartgruppen/Sounds/ and restart the game.")
+        end
+    elseif cmd == "quip" then
         say(randomQuip() or "no quips loaded")
     elseif cmd == "sounds" then
         say("sounds: " .. table.concat(soundNames(), ", "))

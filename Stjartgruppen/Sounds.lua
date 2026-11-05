@@ -18,3 +18,17 @@ ns.sounds = {
     done  = { kit = "IG_QUEST_LIST_COMPLETE" },
     bell  = { kit = "ALARM_CLOCK_WARNING_3" },
 }
+
+-- The "reunion song": plays once (it never loops) when a friend in your group walks up to you.
+-- See Proximity.lua for when it triggers. If the file is missing, the short "kit" sound plays instead.
+-- The song goes into the public download, so only use music you have the right to share.
+--
+-- song.ogg: a 36-second excerpt of Franz Liszt, "Liebestraum No. 3 in A-flat major",
+-- recording from the Al Goldstein collection (credited to Martha Goldstein), via Wikimedia Commons:
+-- https://commons.wikimedia.org/wiki/File:Franz_Liszt_-_Liebestraum,_Ab_Major.ogg
+-- Licensed CC BY-SA 2.0 (https://creativecommons.org/licenses/by-sa/2.0/). Trimmed, faded and
+-- volume-levelled for this addon; the excerpt is shared under the same CC BY-SA 2.0 license.
+ns.song = {
+    file = "Interface\\AddOns\\Stjartgruppen\\Sounds\\song.ogg",
+    kit = "IG_QUEST_LIST_COMPLETE",
+}

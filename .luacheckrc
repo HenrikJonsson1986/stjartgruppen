@@ -11,4 +11,8 @@ read_globals = {
     "CreateFrame", "print", "GetTime", "IsInGuild", "IsInGroup", "UnitName",
     "C_ChatInfo", "C_AddOns", "C_Timer",
     "PlaySound", "PlaySoundFile", "SOUNDKIT",
+    "UIParent", "UISpecialFrames", "tinsert", "wipe", "StopSound",
+    "IsInRaid", "GetNumGroupMembers", "GetNumSubgroupMembers", "UnitExists", "UnitIsUnit",
+    "UnitIsConnected", "UnitDistanceSquared", "issecretvalue",
+    "C_RestrictedActions", "InCombatLockdown",
 }
