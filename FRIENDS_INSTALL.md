@@ -1,16 +1,25 @@
-Paste this to your friends once the addon is approved on CurseForge:
+Messages you can paste to your friends.
 
 ---
 
-How to get Stjartgruppen (WoW: Forever):
+**Option A - CurseForge app (automatic updates, once the addon is approved on CurseForge)**
 
-1. Install the CurseForge app (the free one) and open it.
-2. Click World of Warcraft, then make sure the dropdown at the top says **Forever**.
-3. Go to Browse, search **Stjartgruppen**, and click Install.
+1. Install the free CurseForge app and open it.
+2. Click World of Warcraft, and make sure the dropdown at the top says **Forever**.
+3. Go to Browse, search **Stjartgruppen**, click Install.
 4. Start the game. At character select, click AddOns and make sure Stjartgruppen is ticked.
 5. In game, type /sg for the commands.
 
-Updates: open the CurseForge app now and then and click **Update all** under My Addons.
-Tip: in the app's Settings, under World of Warcraft, you can switch on "Automatically install addon updates" so you never have to think about it.
+Updates: click **Update all** under My Addons now and then. Or switch on "Automatically install addon updates" in the app's Settings, under World of Warcraft.
 
-If it doesn't show up in Browse yet, it is probably still waiting for CurseForge's review.
+---
+
+**Option B - direct download (works right away, Windows)**
+
+1. Download: https://github.com/HenrikJonsson1986/stjartgruppen/releases/latest/download/Stjartgruppen-Installer.zip
+2. Right-click the zip, choose "Extract All...", open the extracted folder.
+3. Double-click **Install Stjartgruppen.bat**. If Windows says "Windows protected your PC", click "More info" and "Run anyway".
+4. Restart the game, tick Stjartgruppen under AddOns at character select, type /sg in game.
+
+Updates: download from the same link again and run the installer again. Your settings are kept.
+If the game tells you a friend has a newer version, that's your cue.

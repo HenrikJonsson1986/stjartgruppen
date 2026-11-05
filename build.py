@@ -6,8 +6,10 @@ Usage:
     python -I build.py --bump patch --notes "Fixed X"    # new version + changelog entry + zip
 
 --bump takes major, minor or patch. --notes can be given several times (one bullet each).
-Output goes in dist/: Stjartgruppen-<version>.zip and release-notes.md (the text to paste
-into the CurseForge upload form for this version).
+Output goes in dist/:
+  Stjartgruppen-<version>.zip   upload this to CurseForge
+  Stjartgruppen-Installer.zip   for friends: addon + double-click Windows installer
+  release-notes.md              the text to paste into the upload form for this version
 
 The zip has one top-level folder, Stjartgruppen/, which is what CurseForge and addon
 managers expect. The version lives in the ## Version line of the .toc.
@@ -24,6 +26,10 @@ ADDON = ROOT / NAME
 TOC = ADDON / f"{NAME}.toc"
 CHANGELOG = ROOT / "CHANGELOG.md"
 DIST = ROOT / "dist"
+INSTALLER = ROOT / "installer"
+# Fixed name on purpose: the GitHub "latest release" link to this file never changes.
+INSTALLER_ZIP = f"{NAME}-Installer.zip"
+CRLF_SUFFIXES = {".bat", ".cmd", ".ps1", ".txt"}  # Windows files get Windows line endings
 # <WoW root>/_dev/projects/Stjartgruppen -> <WoW root>
 ADDONS_DIR = ROOT.parents[1].parent / "_forever_" / "Interface" / "AddOns"
 VERSION_RE = re.compile(r"^(## Version:\s*)(.+)$", re.M)
@@ -87,6 +93,24 @@ def build_zip(version: str) -> Path:
     return out
 
 
+def build_installer_zip() -> Path:
+    """Zip for friends: the addon folder plus the double-click installer at the top level."""
+    out = DIST / INSTALLER_ZIP
+    if out.exists():
+        out.unlink()
+    with zipfile.ZipFile(out, "w", zipfile.ZIP_DEFLATED) as z:
+        for path in sorted(INSTALLER.iterdir()):
+            if path.is_file():
+                data = path.read_bytes()
+                if path.suffix.lower() in CRLF_SUFFIXES:
+                    data = data.replace(b"\r\n", b"\n").replace(b"\n", b"\r\n")
+                z.writestr(path.name, data)
+        for path in sorted(ADDON.rglob("*")):
+            if path.is_file():
+                z.write(path, f"{NAME}/{path.relative_to(ADDON).as_posix()}")
+    return out
+
+
 def install() -> Path:
     dest = ADDONS_DIR / NAME
     if not ADDONS_DIR.is_dir():
@@ -115,6 +139,7 @@ def main() -> None:
 
     out = build_zip(version)
     print(f"Built {out} (version {version})")
+    print(f"Built {build_installer_zip()} (friends installer)")
     print(f"Release notes for the upload form: {DIST / 'release-notes.md'}")
     if args.install:
         print(f"Installed to {install()}")

@@ -1,0 +1,41 @@
+# Builds the addon and publishes a GitHub release when a version tag (for example v0.2.1) is pushed.
+# Friends can always download the newest installer from:
+#   https://github.com/HenrikJonsson1986/stjartgruppen/releases/latest/download/Stjartgruppen-Installer.zip
+# Uses only GitHub's built-in token; no secrets need to be set up.
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Check the tag matches the .toc version
+        run: |
+          toc_version=$(sed -n 's/^## Version:[[:space:]]*//p' Stjartgruppen/Stjartgruppen.toc | tr -d '\r')
+          if [ "v${toc_version}" != "${GITHUB_REF_NAME}" ]; then
+            echo "Tag ${GITHUB_REF_NAME} does not match the .toc version ${toc_version}"
+            exit 1
+          fi
+
+      - name: Build zips
+        run: python -I build.py
+
+      - name: Publish GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: Stjartgruppen ${{ github.ref_name }}
+          body_path: dist/release-notes.md
+          files: dist/*.zip

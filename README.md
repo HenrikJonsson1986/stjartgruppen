@@ -8,11 +8,17 @@ WoW: Forever addon (Interface 16001). Source lives here in `_dev/projects/Stjart
 3. Test in game: `python -I build.py --install`, then `/reload` (a brand-new addon or sound file needs a full game restart).
 
 ## Releasing a new version (the update flow)
-1. `python -I build.py --bump patch --notes "What changed"` (use `minor` for new features). This raises the version in the .toc, adds a CHANGELOG entry, and writes two files in `dist/`:
-   - `Stjartgruppen-<version>.zip` (the only zip kept there, so the wrong one can't be uploaded)
-   - `release-notes.md` (paste this into the upload form)
-2. Open your project on CurseForge, go to Files, upload the zip, set the game version to WoW: Forever / 1.60.1, paste the release notes, choose Release.
-3. Wait for review (see below). Friends then see the update in the CurseForge app.
+1. `python -I build.py --bump patch --notes "What changed"` (use `minor` for new features). This raises the version in the .toc, adds a CHANGELOG entry, and writes to `dist/`:
+   - `Stjartgruppen-<version>.zip` (for CurseForge; the only versioned zip kept there, so the wrong one can't be uploaded)
+   - `Stjartgruppen-Installer.zip` (for friends: addon + double-click Windows installer)
+   - `release-notes.md` (paste this into the CurseForge upload form)
+2. Commit, then tag and push: `git tag v<version>` and `git push origin main --tags`.
+   The GitHub Actions workflow (`.github/workflows/release.yml`) checks the tag matches the .toc version, builds both zips and publishes a GitHub release. The friends' link then serves the new installer:
+   https://github.com/HenrikJonsson1986/stjartgruppen/releases/latest/download/Stjartgruppen-Installer.zip
+3. CurseForge: open the project (ID 1784894), Files, upload `Stjartgruppen-<version>.zip`, game version WoW: Forever / 1.60.1, paste the release notes, Release. Friends using the CurseForge app get it after review.
+
+## The friends installer (`installer/`)
+`Install Stjartgruppen.bat` runs `install.ps1` with Windows PowerShell. It finds the game folder (registry, then common folders on every drive, then a folder picker), copies `Stjartgruppen/` into `_forever_\Interface\AddOns` (replacing an older copy) and leaves the WTF settings alone. If the game folder needs admin rights it asks for them. Test it without touching the game: `& ".\Install Stjartgruppen.bat" -DryRun -NoPause`, or `-WowPath "<some folder>"` to install somewhere else.
 
 ## First-time publishing on CurseForge (you do this yourself)
 1. Create a CurseForge author account (log in at authors.curseforge.com).
