@@ -2,7 +2,7 @@
 ## Title: Stjartgruppen
 ## Notes: Silly little extras for a group of friends: a message of the day, quips, shared sounds, and a heads-up when a friend has a newer version.
 ## Author: Henrik
-## Version: 0.4.1
+## Version: 0.5.0
 ## SavedVariables: StjartgruppenDB
 
 Quips.lua
@@ -10,4 +10,5 @@ Sounds.lua
 Messages.lua
 MOTD.lua
 Proximity.lua
+Greetings.lua
 Core.lua

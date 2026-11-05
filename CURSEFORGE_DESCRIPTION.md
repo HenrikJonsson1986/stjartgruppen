@@ -5,6 +5,7 @@ Silly little extras for a group of friends in WoW: Forever.
 ## What it does
 - A Message of the day window at login with a random kind word about you (turn it off with `/sg motd off`).
 - Reunion song: when a group member walks up to you in the open world, a short love song plays once (`/sg song off` to turn it off).
+- Greeting whispers: when a friend who also runs Stjartgruppen comes online (friends list or guild), you whisper them a random nice message, at most once an hour per friend (`/sg hello off` to turn it off). People without the addon never get one.
 - Shows a random quip when you log in (turn it off with `/sg greet`).
 - Shared sounds: play a sound for yourself, or for everyone in your party who has the addon.
 - If a friend in your party or guild has a newer version, you get a one-line reminder to update.
@@ -12,6 +13,7 @@ Silly little extras for a group of friends in WoW: Forever.
 ## Commands
 - `/sg motd` - show the message of the day again (`/sg motd off` or `on` to change the login window)
 - `/sg song` - play the reunion song (`/sg song stop` stops it, `/sg song off` or `on` for the automatic one)
+- `/sg hello` - greeting whispers: status and the Stjartgruppen friends it knows (`off`/`on`, `add <name>`, `remove <name>`, `test`)
 - `/sg quip` - show a random quip
 - `/sg sounds` - list the available sounds
 - `/sg sound <name>` - play a sound just for you
@@ -23,7 +25,7 @@ Silly little extras for a group of friends in WoW: Forever.
 Sounds from friends are limited to one every 10 seconds per friend, and you can mute them any time.
 
 ## Privacy
-Stjartgruppen only sends two kinds of tiny messages to your party and guild over the normal addon channel: its version number (for example `V:0.2.0`) and the name of a sound you chose to play (for example `S:ping`). It collects nothing else and talks to no websites.
+Over the hidden addon channel, Stjartgruppen only sends tiny messages: its version number to your party and guild (for example `V:0.5.0`), the name of a sound you chose to play (for example `S:ping`), and a version "probe" whispered to online friends and guild members it doesn't know yet, so it can tell who else runs the addon. Players without the addon never see any of these. The only visible chat it sends is the greeting whisper to friends who run Stjartgruppen, which you can turn off with `/sg hello off`. It remembers the names of those friends in your saved settings, collects nothing else and talks to no websites.
 
 ## Install
 Install through the CurseForge app with the World of Warcraft Forever instance selected, or unzip the `Stjartgruppen` folder into `World of Warcraft/_forever_/Interface/AddOns/`.

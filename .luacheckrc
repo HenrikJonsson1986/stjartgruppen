@@ -15,4 +15,5 @@ read_globals = {
     "IsInRaid", "GetNumGroupMembers", "GetNumSubgroupMembers", "UnitExists", "UnitIsUnit",
     "UnitIsConnected", "UnitDistanceSquared", "issecretvalue",
     "C_RestrictedActions", "InCombatLockdown",
+    "Ambiguate", "C_FriendList", "C_GuildInfo", "GetNumGuildMembers", "GetGuildRosterInfo", "time",
 }

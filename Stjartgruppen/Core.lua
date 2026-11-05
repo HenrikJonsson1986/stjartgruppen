@@ -1,9 +1,15 @@
 -- Stjartgruppen: quips, shared sounds, and a friendly "newer version available" notice.
--- Lua 5.1. Over the addon channel it sends only short strings: "V:<version>" and "S:<sound name>".
+-- Lua 5.1. Over the hidden addon channel it sends only short strings:
+--   "V:<version>"   version (to guild/party, or as the answer to a probe)
+--   "P:<version>"   probe: "do you have Stjartgruppen?" (whispered, see Greetings.lua)
+--   "S:<sound name>" a shared sound (party only)
 local ADDON_NAME, ns = ...
 
 local PREFIX = "STJARTGRUPPEN" -- addon message prefix, 16 chars max
-local defaults = { greet = true, muteSounds = false, motd = true, song = true }
+ns.PREFIX = PREFIX
+local defaults = { greet = true, muteSounds = false, motd = true, song = true, hello = true }
+local PROBE_REPLY_COOLDOWN = 30 -- seconds between answers to the same player's probes
+local lastProbeReply = {}
 local SEND_COOLDOWN = 60      -- seconds between version broadcasts per channel
 local SOUND_SEND_COOLDOWN = 3 -- seconds between sounds you can send
 local SOUND_RECV_COOLDOWN = 10 -- seconds between sounds accepted from the same friend
@@ -132,6 +138,7 @@ frame:SetScript("OnEvent", function(_, event, arg1, arg2, arg3, arg4)
             if StjartgruppenDB[k] == nil then StjartgruppenDB[k] = v end
         end
         myVersion = C_AddOns.GetAddOnMetadata(ADDON_NAME, "Version") or "0"
+        ns.version = myVersion
         C_ChatInfo.RegisterAddonMessagePrefix(PREFIX)
     elseif event == "PLAYER_LOGIN" then
         if StjartgruppenDB.greet then
@@ -143,6 +150,7 @@ frame:SetScript("OnEvent", function(_, event, arg1, arg2, arg3, arg4)
         end
         C_Timer.After(5, broadcastAll)
         ns.UpdateProximity()
+        ns.StartGreetings()
     elseif event == "GROUP_ROSTER_UPDATE" then
         if IsInGroup() then broadcast("PARTY") end
         ns.UpdateProximity()
@@ -150,8 +158,18 @@ frame:SetScript("OnEvent", function(_, event, arg1, arg2, arg3, arg4)
         -- payload: prefix, text, channel, sender
         if arg1 ~= PREFIX then return end
         local text = tostring(arg2 or "")
-        local remote = text:match("^V:(.+)$")
+        local kind, remote = text:match("^([VP]):(.+)$")
         if remote then
+            -- Whoever sent this runs Stjartgruppen: remember them for greeting whispers.
+            ns.LearnFriend(arg4)
+            if kind == "P" and type(arg4) == "string" and not (issecretvalue and issecretvalue(arg4)) then
+                -- answer a probe so they learn about us too (rate-limited per player)
+                local now = GetTime()
+                if not lastProbeReply[arg4] or now - lastProbeReply[arg4] >= PROBE_REPLY_COOLDOWN then
+                    lastProbeReply[arg4] = now
+                    pcall(C_ChatInfo.SendAddonMessage, PREFIX, "V:" .. myVersion, "WHISPER", arg4)
+                end
+            end
             if isNewer(remote, myVersion) and notifiedVersion ~= remote then
                 notifiedVersion = remote
                 say(("a friend has version %s (you have %s). Update Stjartgruppen in the CurseForge app!"):format(remote, myVersion))
@@ -174,6 +192,10 @@ local function help()
     print("  /sg motd off | on - stop (or start) showing it at login")
     print("  /sg song - play the reunion song (it plays by itself when a group member walks up to you)")
     print("  /sg song stop - stop it, /sg song off | on - turn the automatic song off or on")
+    print("  /sg hello - greeting whispers: status and the Stjartgruppen friends you know")
+    print("  /sg hello off | on - stop (or start) whispering friends when they come online")
+    print("  /sg hello add | remove <name> - add or remove a friend by hand")
+    print("  /sg hello test - show a sample greeting (only you see it)")
     print("  /sg quip - show a random quip")
     print("  /sg sounds - list available sounds")
     print("  /sg sound <name> - play a sound just for you")
@@ -203,6 +225,24 @@ SlashCmdList["STJARTGRUPPEN"] = function(msg)
             say("reunion song when a friend comes close: " .. arg)
         elseif not ns.PlaySong() then
             say("no song found. Put song.ogg in Stjartgruppen/Sounds/ and restart the game.")
+        end
+    elseif cmd == "hello" then
+        local sub, who = arg:match("^(%S*)%s*(.-)$")
+        if sub == "off" or sub == "on" then
+            StjartgruppenDB.hello = (sub == "on")
+            say("greeting whispers when a Stjartgruppen friend comes online: " .. sub)
+        elseif sub == "add" and who ~= "" then
+            local name = ns.AddFriend(who)
+            say(name and (name .. " added to your Stjartgruppen friends.") or "that name doesn't look right.")
+        elseif sub == "remove" and who ~= "" then
+            local name = ns.RemoveFriend(who)
+            say(name and (name .. " removed.") or (who .. " wasn't on the list."))
+        elseif sub == "test" then
+            say("sample greeting: " .. (ns.PreviewGreeting() or "no greetings loaded"))
+        else
+            local names = ns.KnownFriends()
+            say("greeting whispers are " .. (StjartgruppenDB.hello and "on" or "off") .. ". Stjartgruppen friends seen so far: "
+                .. (#names > 0 and table.concat(names, ", ") or "none yet (they show up once you've both been online)"))
         end
     elseif cmd == "quip" then
         say(randomQuip() or "no quips loaded")

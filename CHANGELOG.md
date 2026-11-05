@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.5.0
+- New: greeting whispers. When a fellow Stjartgruppen user on your friends list or in your guild comes online, you whisper them a random nice message (at most once an hour per friend). Only people the addon has seen running Stjartgruppen get one; it finds them with hidden addon messages that players without the addon never see.
+- New: /sg hello shows who it knows, /sg hello off (or on), /sg hello add or remove <name>, /sg hello test.
+
 ## 0.4.1
 - New reunion song: the love theme from Tchaikovsky's "Romeo and Juliet" (36 seconds, plays once). It replaces Liebestraum.
 - The Message of the day window now shows the Stjartgruppen logo.
