@@ -18,7 +18,7 @@ WoW: Forever addon (Interface 16001). Source lives here in `_dev/projects/Stjart
 3. CurseForge: open the project (ID 1784894), Files, upload `Stjartgruppen-<version>.zip`, game version WoW: Forever / 1.60.1, paste the release notes, Release. Friends using the CurseForge app get it after review.
 
 ## The friends installer (`installer/`)
-`Install Stjartgruppen.bat` runs `install.ps1` with Windows PowerShell. It finds the game folder (registry, then common folders on every drive, then a folder picker), copies `Stjartgruppen/` into `_forever_\Interface\AddOns` (replacing an older copy) and leaves the WTF settings alone. If the game folder needs admin rights it asks for them. Test it without touching the game: `& ".\Install Stjartgruppen.bat" -DryRun -NoPause`, or `-WowPath "<some folder>"` to install somewhere else.
+In the friends' zip only `Install Stjartgruppen.bat` and `README.txt` sit at the top; `install.ps1` and the addon folder go into `files/` (see `INSTALLER_TOP` in `build.py`) so it's obvious what to double-click. `Install Stjartgruppen.bat` runs `files\install.ps1` with Windows PowerShell. It finds the game folder (registry, then common folders on every drive, then a folder picker), copies `Stjartgruppen/` into `_forever_\Interface\AddOns` (replacing an older copy) and leaves the WTF settings alone. If the game folder needs admin rights it asks for them. Test it without touching the game, from an extracted copy of `dist/Stjartgruppen-Installer.zip` (the .bat expects the `files/` layout): `& ".\Install Stjartgruppen.bat" -DryRun -NoPause`, or `-WowPath "<some folder>"` to install somewhere else.
 
 ## First-time publishing on CurseForge (you do this yourself)
 1. Create a CurseForge author account (log in at authors.curseforge.com).

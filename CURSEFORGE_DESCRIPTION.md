@@ -32,6 +32,6 @@ Install through the CurseForge app with the World of Warcraft Forever instance s
 Open `Stjartgruppen/Messages.lua`, `Stjartgruppen/Quips.lua` or `Stjartgruppen/Sounds.lua` in a text editor and add lines. Your friends need the same sound names to hear them.
 
 ## Credits
-Reunion song: a 36-second excerpt of Franz Liszt, "Liebestraum No. 3", recording from the Al Goldstein collection (credited to Martha Goldstein) via [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Franz_Liszt_-_Liebestraum,_Ab_Major.ogg), licensed [CC BY-SA 2.0](https://creativecommons.org/licenses/by-sa/2.0/). Trimmed, faded and volume-levelled; the excerpt is shared under the same license. The addon code is MIT.
+Reunion song: a 36-second excerpt of the love theme from Tchaikovsky's "Romeo and Juliet" overture-fantasy, performed by the Skidmore College Orchestra, courtesy of [Musopen](https://musopen.org), via [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Pyotr_Ilyich_Tchaikovsky_-_romeo_and_juliet-_overture-fantasy.ogg). Public domain. Trimmed, faded and volume-levelled. The addon code is MIT.
 
 Made for WoW: Forever (Interface 16001).

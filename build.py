@@ -30,6 +30,10 @@ INSTALLER = ROOT / "installer"
 # Fixed name on purpose: the GitHub "latest release" link to this file never changes.
 INSTALLER_ZIP = f"{NAME}-Installer.zip"
 CRLF_SUFFIXES = {".bat", ".cmd", ".ps1", ".txt"}  # Windows files get Windows line endings
+# Only these sit at the top of the friends' zip, so it's obvious what to double-click.
+# Everything else (install.ps1 and the addon folder) goes into INSTALLER_SUBDIR.
+INSTALLER_TOP = {"Install Stjartgruppen.bat", "README.txt"}
+INSTALLER_SUBDIR = "files"
 # <WoW root>/_dev/projects/Stjartgruppen -> <WoW root>
 ADDONS_DIR = ROOT.parents[1].parent / "_forever_" / "Interface" / "AddOns"
 VERSION_RE = re.compile(r"^(## Version:\s*)(.+)$", re.M)
@@ -94,20 +98,24 @@ def build_zip(version: str) -> Path:
 
 
 def build_installer_zip() -> Path:
-    """Zip for friends: the addon folder plus the double-click installer at the top level."""
+    """Zip for friends: the .bat and README at the top, everything else in files/."""
     out = DIST / INSTALLER_ZIP
     if out.exists():
         out.unlink()
+    missing = INSTALLER_TOP - {p.name for p in INSTALLER.iterdir()}
+    if missing:
+        raise SystemExit(f"Missing installer files: {', '.join(sorted(missing))}")
     with zipfile.ZipFile(out, "w", zipfile.ZIP_DEFLATED) as z:
         for path in sorted(INSTALLER.iterdir()):
             if path.is_file():
                 data = path.read_bytes()
                 if path.suffix.lower() in CRLF_SUFFIXES:
                     data = data.replace(b"\r\n", b"\n").replace(b"\n", b"\r\n")
-                z.writestr(path.name, data)
+                name = path.name if path.name in INSTALLER_TOP else f"{INSTALLER_SUBDIR}/{path.name}"
+                z.writestr(name, data)
         for path in sorted(ADDON.rglob("*")):
             if path.is_file():
-                z.write(path, f"{NAME}/{path.relative_to(ADDON).as_posix()}")
+                z.write(path, f"{INSTALLER_SUBDIR}/{NAME}/{path.relative_to(ADDON).as_posix()}")
     return out
 
 

@@ -18,7 +18,7 @@ Updates: click **Update all** under My Addons now and then. Or switch on "Automa
 
 1. Download: https://github.com/HenrikJonsson1986/stjartgruppen/releases/latest/download/Stjartgruppen-Installer.zip
 2. Right-click the zip, choose "Extract All...", open the extracted folder.
-3. Double-click **Install Stjartgruppen.bat**. If Windows says "Windows protected your PC", click "More info" and "Run anyway".
+3. Double-click **Install Stjartgruppen.bat** (the only thing to click; ignore the "files" folder). If Windows says "Windows protected your PC", click "More info" and "Run anyway".
 4. Restart the game, tick Stjartgruppen under AddOns at character select, type /sg in game.
 
 Updates: download from the same link again and run the installer again. Your settings are kept.

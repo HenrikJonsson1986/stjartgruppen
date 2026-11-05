@@ -10,9 +10,10 @@ Restart the game fully after adding a file (/reload will not find it).
 Only use files you have the right to share.
 
 CREDITS
-song.ogg - Franz Liszt, "Liebestraum No. 3 in A-flat major" (36-second excerpt).
-  Recording from the Al Goldstein collection (credited to Martha Goldstein), via Wikimedia Commons:
-  https://commons.wikimedia.org/wiki/File:Franz_Liszt_-_Liebestraum,_Ab_Major.ogg
-  License: CC BY-SA 2.0 (https://creativecommons.org/licenses/by-sa/2.0/).
-  Changes: trimmed, faded in/out and volume-levelled. This excerpt is shared under CC BY-SA 2.0.
-  (The addon's code is MIT; this sound file keeps its own CC BY-SA 2.0 license.)
+song.ogg - Pyotr Ilyich Tchaikovsky, "Romeo and Juliet" overture-fantasy
+  (36-second excerpt of the love theme, from 13:05).
+  Performed by the Skidmore College Orchestra, courtesy of Musopen (musopen.org).
+  Via Wikimedia Commons:
+  https://commons.wikimedia.org/wiki/File:Pyotr_Ilyich_Tchaikovsky_-_romeo_and_juliet-_overture-fantasy.ogg
+  License: public domain.
+  Changes: trimmed, faded in/out and volume-levelled.

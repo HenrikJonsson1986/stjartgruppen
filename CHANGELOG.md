@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.4.1
+- New reunion song: the love theme from Tchaikovsky's "Romeo and Juliet" (36 seconds, plays once). It replaces Liebestraum.
+- The Message of the day window now shows the Stjartgruppen logo.
+- Friends installer: only 'Install Stjartgruppen.bat' and README.txt are at the top of the zip now; the other files are in a 'files' folder.
+
 ## 0.4.0
 - New: reunion song. When a group member who was 40+ yards away walks up to within 10 yards of you, a 36-second excerpt of Liszt's "Liebestraum No. 3" plays once (open world only; the game gives no distances in dungeons, raids or PvP). Max once per 2 minutes, and once per 10 minutes per friend.
 - New: /sg song plays it, /sg song stop stops it, /sg song off (or on) turns the automatic song off.

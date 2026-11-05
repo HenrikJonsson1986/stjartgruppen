@@ -19,8 +19,8 @@ end
 
 local function build()
     local f = CreateFrame("Frame", "StjartgruppenMOTDFrame", UIParent, "BasicFrameTemplateWithInset")
-    f:SetSize(420, 210)
-    f:SetPoint("CENTER", 0, 120)
+    f:SetSize(420, 390)
+    f:SetPoint("CENTER", 0, 60)
     f:SetFrameStrata("DIALOG")
     f:SetClampedToScreen(true)
     f:SetMovable(true)
@@ -32,13 +32,19 @@ local function build()
 
     f.TitleText:SetText("Stjärtgruppen")
 
+    -- The group logo (Media/logo.tga, 256x256). New texture files need a full game restart.
+    local logo = f:CreateTexture(nil, "ARTWORK")
+    logo:SetSize(180, 180)
+    logo:SetPoint("TOP", 0, -32)
+    logo:SetTexture("Interface\\AddOns\\Stjartgruppen\\Media\\logo")
+
     local header = f:CreateFontString(nil, "ARTWORK", "GameFontNormal")
-    header:SetPoint("TOP", 0, -36)
+    header:SetPoint("TOP", logo, "BOTTOM", 0, -10)
     header:SetText("Message of the day")
 
     local text = f:CreateFontString(nil, "ARTWORK", "GameFontHighlightLarge")
-    text:SetPoint("TOPLEFT", 24, -62)
-    text:SetPoint("TOPRIGHT", -24, -62)
+    text:SetPoint("TOP", header, "BOTTOM", 0, -8)
+    text:SetWidth(372)
     text:SetHeight(90)
     text:SetJustifyH("CENTER")
     text:SetJustifyV("MIDDLE")

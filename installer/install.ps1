@@ -1,7 +1,8 @@
 <#
 Installs or updates the Stjartgruppen addon for WoW: Forever.
 
-Double-click "Install Stjartgruppen.bat" instead of running this file directly.
+Double-click "Install Stjartgruppen.bat" (one folder up) instead of running this file directly.
+In the download this file sits in the "files" folder, next to the Stjartgruppen addon folder.
 All it does: find your World of Warcraft folder and copy the Stjartgruppen folder
 into World of Warcraft\_forever_\Interface\AddOns (replacing an older copy).
 Your addon settings live in the WTF folder and are not touched.
@@ -94,7 +95,7 @@ try {
 
     $toc = Join-Path $Source "$AddonName.toc"
     if (-not (Test-Path -LiteralPath $toc)) {
-        throw "Can't find the $AddonName folder next to this installer. Unzip the whole download first, then run the installer from the unzipped folder."
+        throw "Can't find the $AddonName addon files (expected in $Source). Unzip the whole download first (right-click, Extract All), then double-click Install Stjartgruppen.bat in the unzipped folder."
     }
     $match = Select-String -LiteralPath $toc -Pattern '^## Version:\s*(.+)$' | Select-Object -First 1
     $version = if ($match) { $match.Matches[0].Groups[1].Value.Trim() } else { 'unknown' }
