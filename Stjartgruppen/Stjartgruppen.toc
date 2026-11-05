@@ -1,0 +1,10 @@
+## Interface: 16001
+## Title: Stjartgruppen
+## Notes: Silly little extras for a group of friends: quips, shared sounds, and a heads-up when a friend has a newer version.
+## Author: Henrik
+## Version: 0.2.0
+## SavedVariables: StjartgruppenDB
+
+Quips.lua
+Sounds.lua
+Core.lua
