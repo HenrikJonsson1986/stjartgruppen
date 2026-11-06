@@ -45,29 +45,3 @@ ns.messages = {
     "You are worth more than all the gold in Gadgetzan.",
     "Stjärtgruppen loves you. Now go have fun!",
 }
-
--- Greeting whispers: one of these is whispered to a Stjärtgruppen friend when they come online.
--- {name} is replaced with their character name. Keep them short (whispers max out at 255 characters)
--- and don't use the "|" character (the game treats it as a formatting code).
-ns.greetings = {
-    "Hey {name}! Welcome back, the world just got a little brighter. <3",
-    "{name} is online! Best news I've had all day.",
-    "Welcome back {name}! Azeroth missed you. So did I.",
-    "Oh hi {name}! You look fantastic today, as always.",
-    "{name}! There you are. Ready for adventure, beautiful?",
-    "Hello {name}! Just wanted to say you're a great friend.",
-    "Look who it is! Hi {name}, so happy to see you online.",
-    "{name} has entered the game. Party mood: activated!",
-    "Welcome back {name}! Grab some tea, the quests can wait a minute.",
-    "Hey {name}, you legend. Good to have you here.",
-    "Hi {name}! The innkeeper said you were coming. I'm glad you did.",
-    "{name}! My favourite person just logged in.",
-    "Welcome {name}! Your friends think you're amazing. Fact.",
-    "Hey {name}, sending you a big virtual hug. Welcome back!",
-    "{name} is here! Now the group is complete.",
-    "Hi {name}! Have a wonderful session, you deserve it.",
-    "Good to see you {name}! Remember: you're awesome.",
-    "Welcome back {name}! May your loot be epic and your deaths be few.",
-    "Hello {name}! The murlocs say hi. I say hi too, but nicer.",
-    "{name}! Stjärtgruppen salutes you. Welcome back!",
-}

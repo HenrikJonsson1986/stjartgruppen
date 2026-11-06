@@ -5,7 +5,7 @@ WoW: Forever addon (Interface 16001). Source lives here in `_dev/projects/Stjart
 ## Everyday workflow
 1. Edit files in `Stjartgruppen/`.
 2. Lint (from this folder): `& "C:\Program Files (x86)\World of Warcraft\_dev\tools\luacheck\luacheck.exe" --config .luacheckrc Stjartgruppen`
-3. Test in game: `python -I build.py --install`, then `/reload` (a brand-new addon or sound file needs a full game restart).
+3. Test in game: `python -I build.py --install`, then `/reload` (a brand-new addon or texture file needs a full game restart).
 
 ## Releasing a new version (the update flow)
 1. `python -I build.py --bump patch --notes "What changed"` (use `minor` for new features). This raises the version in the .toc, adds a CHANGELOG entry, and writes to `dist/`:

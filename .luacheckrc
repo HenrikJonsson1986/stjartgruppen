@@ -4,7 +4,7 @@ ignore = { "212/self", "212/event" }
 
 globals = {
     "StjartgruppenDB",
-    "SLASH_STJARTGRUPPEN1", "SLASH_STJARTGRUPPEN2", "SlashCmdList",
+    "SLASH_STJARTGRUPPEN1", "BINDING_HEADER_STJARTGRUPPEN", "_G", "SLASH_STJARTGRUPPEN2", "SlashCmdList",
 }
 
 read_globals = {
@@ -15,5 +15,6 @@ read_globals = {
     "IsInRaid", "GetNumGroupMembers", "GetNumSubgroupMembers", "UnitExists", "UnitIsUnit",
     "UnitIsConnected", "UnitDistanceSquared", "issecretvalue",
     "C_RestrictedActions", "InCombatLockdown",
+    "SecureHandlerWrapScript", "C_Texture", "CANCEL", "GetBindingKey", "Settings", "MinimalSliderWithSteppersMixin", "GetBindingAction", "GetBindingText", "SecureHandlerSetFrameRef", "GetCursorPosition", "UnitGUID", "SetOverrideBindingClick", "ClearOverrideBindings",
     "Ambiguate", "C_FriendList", "C_GuildInfo", "GetNumGuildMembers", "GetGuildRosterInfo", "time",
 }

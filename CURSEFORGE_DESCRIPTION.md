@@ -4,36 +4,29 @@ Silly little extras for a group of friends in WoW: Forever.
 
 ## What it does
 - A Message of the day window at login with a random kind word about you (turn it off with `/sg motd off`).
-- Reunion song: when a group member walks up to you in the open world, a short love song plays once (`/sg song off` to turn it off).
-- Greeting whispers: when a friend who also runs Stjartgruppen comes online (friends list or guild), you whisper them a random nice message, at most once an hour per friend (`/sg hello off` to turn it off). People without the addon never get one.
-- Shows a random quip when you log in (turn it off with `/sg greet`).
-- Shared sounds: play a sound for yourself, or for everyone in your party who has the addon.
+- Marker wheel: hold Ctrl and the middle mouse button over a mob (or with a target), move the mouse toward a marker on the wheel that appears, and let go. It marks the mob that was under your mouse, otherwise your target. Skull is straight up, and the red X (straight down) removes the marker, letting go in the middle cancels. Works in combat.
+- Ping wheel: hold Alt and the middle mouse button and pick Attack, On My Way, Warning or Assist the same way. It pings the mob under your mouse, using the game's own ping system.
+- Marker rotator: hold Ctrl and scroll up to put the next raid marker (Skull, Cross, Square, Moon, ...) on the mob under your mouse or your target, scroll down for the previous one. A new mob starts at Skull. It also works as a macro (`/click StjartgruppenMarkRotate`; Shift starts again from Skull, Ctrl removes the marker). Works in combat, because it uses Blizzard's own marker button.
 - If a friend in your party or guild has a newer version, you get a one-line reminder to update.
+
+The marker keys can be changed in Options > Keybindings > AddOns > Stjartgruppen. Ctrl + middle mouse (markers), Alt + middle mouse (pings) and Ctrl + scroll are the defaults.
 
 ## Commands
 - `/sg motd` - show the message of the day again (`/sg motd off` or `on` to change the login window)
-- `/sg song` - play the reunion song (`/sg song stop` stops it, `/sg song off` or `on` for the automatic one)
-- `/sg hello` - greeting whispers: status and the Stjartgruppen friends it knows (`off`/`on`, `add <name>`, `remove <name>`, `test`)
-- `/sg quip` - show a random quip
-- `/sg sounds` - list the available sounds
-- `/sg sound <name>` - play a sound just for you
-- `/sg play <name>` - play a sound for your party (friends with the addon hear it too)
-- `/sg mute` - stop (or resume) hearing sounds friends play
-- `/sg greet` - turn the login quip on or off
+- `/sg options` - open the options (wheel transparency and more), also in Options > AddOns > Stjartgruppen
+- `/sg mark` - your marker and ping keys and how to change them (`/sg mark wheel off` or `on` for the default keys)
 - `/sg version` - show your version
 
-Sounds from friends are limited to one every 10 seconds per friend, and you can mute them any time.
-
 ## Privacy
-Over the hidden addon channel, Stjartgruppen only sends tiny messages: its version number to your party and guild (for example `V:0.5.0`), the name of a sound you chose to play (for example `S:ping`), and a version "probe" whispered to online friends and guild members it doesn't know yet, so it can tell who else runs the addon. Players without the addon never see any of these. The only visible chat it sends is the greeting whisper to friends who run Stjartgruppen, which you can turn off with `/sg hello off`. It remembers the names of those friends in your saved settings, collects nothing else and talks to no websites.
+Over the hidden addon channel, Stjartgruppen only sends tiny messages: its version number to your party and guild (for example `V:0.6.0`), so it can tell you when a friend has a newer version. Players without the addon never see it. It sends no visible chat, collects nothing and talks to no websites.
 
 ## Install
 Install through the CurseForge app with the World of Warcraft Forever instance selected, or unzip the `Stjartgruppen` folder into `World of Warcraft/_forever_/Interface/AddOns/`.
 
-## Want your own messages, quips or sounds?
-Open `Stjartgruppen/Messages.lua`, `Stjartgruppen/Quips.lua` or `Stjartgruppen/Sounds.lua` in a text editor and add lines. Your friends need the same sound names to hear them.
+## Want your own messages?
+Open `Stjartgruppen/Messages.lua` in a text editor and add lines.
 
 ## Credits
-Reunion song: a 36-second excerpt of the love theme from Tchaikovsky's "Romeo and Juliet" overture-fantasy, performed by the Skidmore College Orchestra, courtesy of [Musopen](https://musopen.org), via [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Pyotr_Ilyich_Tchaikovsky_-_romeo_and_juliet-_overture-fantasy.ogg). Public domain. Trimmed, faded and volume-levelled. The addon code is MIT.
+The addon code is MIT. Marker icons are the game's own.
 
 Made for WoW: Forever (Interface 16001).

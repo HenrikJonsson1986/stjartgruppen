@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.6.0
+- New: ping wheel. Hold Alt and the middle mouse button (or your own key) and pick Attack, On My Way, Warning or Assist by direction. It pings the mob under your mouse, using the game's ping system. Same look as the marker wheel.
+- The middle of the wheels shows the group's hero in a round portrait.
+- New: options panel in Options > AddOns > Stjartgruppen (or /sg options): wheel transparency (default 50%) and marker transparency (default 0%, fully visible), default marker keys, message of the day.
+- Removed: the reunion song, the greeting whispers, the shared sounds (/sg play, /sg sound, /sg sounds, /sg mute) and the login quip (/sg quip, /sg greet). The message of the day stays. Stjartgruppen no longer sends any visible chat or whispers.
+- New: pick your own keys for the marker wheel, next marker and previous marker in Options > Keybindings > AddOns > Stjartgruppen. Ctrl + middle mouse and Ctrl + scroll are the defaults, used only for actions you haven't bound and keys you haven't used. /sg mark shows your keys.
+- New: marker wheel. Hold Ctrl and the middle mouse button over a mob (or with a target), and a wheel with all eight markers and a red X appears around the cursor. Move the mouse in the direction of a marker, any distance, and let go: it goes on the mob that was under the mouse, otherwise on your target. Skull is straight up and the red X (straight down) removes the marker, letting go in the middle cancels. Works in combat. Painted iron-and-gold look to match the group logo.
+- New: marker rotator. Hold Ctrl and scroll up for the next marker (Skull, Cross, Square, Moon, Triangle, Diamond, Circle, Star) on the mob under your mouse or your target, scroll down for the previous one, Removing a marker starts the count at Skull again. A new mob starts at Skull (out of combat), and Ctrl + Shift + scroll up starts again from Skull. Works in combat. /sg mark wheel off turns the mouse keys off.
+- The same rotator works from a macro: /click StjartgruppenMarkRotate (Shift+press starts again from Skull, Ctrl+press removes the marker). /sg mark shows how.
+
 ## 0.5.0
 - New: greeting whispers. When a fellow Stjartgruppen user on your friends list or in your guild comes online, you whisper them a random nice message (at most once an hour per friend). Only people the addon has seen running Stjartgruppen get one; it finds them with hidden addon messages that players without the addon never see.
 - New: /sg hello shows who it knows, /sg hello off (or on), /sg hello add or remove <name>, /sg hello test.

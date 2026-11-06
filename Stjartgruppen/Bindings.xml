@@ -1,0 +1,9 @@
+<Bindings>
+	<!-- Shown in Options > Keybindings > AddOns. The names (BINDING_NAME_...) are set in Marker.lua.
+	     Each one "clicks" the secure StjartgruppenMarkRotate button with a mouse button name the
+	     button's secure snippet reads. -->
+	<Binding name="CLICK StjartgruppenMarkRotate:MarkMenu" header="STJARTGRUPPEN" category="ADDONS"/>
+	<Binding name="CLICK StjartgruppenMarkRotate:PingMenu" category="ADDONS"/>
+	<Binding name="CLICK StjartgruppenMarkRotate:WheelUp" category="ADDONS"/>
+	<Binding name="CLICK StjartgruppenMarkRotate:WheelDown" category="ADDONS"/>
+</Bindings>
